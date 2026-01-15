@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Forecast{% endblock %}
+
+{% block content %}
+{% if error %}
+<div class="error">
+    <strong>❌ Error:</strong> {{ error }}
+</div>
+<p><a href="/">← Back to search</a></p>
+{% else %}
+
+<div class="location-info">
+    <h2 style="margin-bottom: 10px;">📍 {{ location.name or "Location" }}</h2>
+    <p style="color: #666;">
+        Coordinates: {{ location.latitude }}, {{ location.longitude }}<br>
+        Days returned: {{ days_returned }}
+        {% if cached %}
+        <span style="color: #0066cc;">| 💾 Cached
+        {% if stale %}(stale){% endif %}
+        </span>
+        {% endif %}
+    </p>
+</div>
+
+{% if stale %}
+<div class="info">
+    <strong>⚠️ Notice:</strong> Displaying cached forecast data. yr.no API is temporarily unavailable.
+</div>
+{% endif %}
+
+<div class="forecast-grid">
+    {% for forecast in forecasts %}
+    <div class="forecast-card">
+        <div class="forecast-date">{{ forecast.date }}</div>
+        <div class="forecast-temp">
+            {{ "%.1f"|format(forecast.temperature) }}°
+        </div>
+        <div style="color: #888; font-size: 0.9em; margin: 5px 0;">
+            {{ forecast.unit|upper }}
+        </div>
+        <div class="forecast-time">
+            🕐 {{ forecast.time }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div style="margin-top: 30px; text-align: center;">
+    <a href="/" style="display: inline-block; padding: 12px 24px; background: #667eea; 
+               color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+        ← New Search
+    </a>
+</div>
+
+{% endif %}
+{% endblock %}

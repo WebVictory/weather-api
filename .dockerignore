@@ -1,0 +1,57 @@
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Project specific
+.specify/
+.cursor/

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="info">
+    <strong>💡 Quick Start:</strong> Leave fields empty to get Belgrade forecast, or enter coordinates/location name below.
+</div>
+
+<form action="/forecast" method="post">
+    <div class="form-group">
+        <label for="location_name">Location Name (e.g., "Oslo", "Belgrade")</label>
+        <input type="text" id="location_name" name="location_name"
+               placeholder="Enter city name (optional)">
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="number" id="latitude" name="latitude"
+                   step="0.0001" min="-90" max="90"
+                   placeholder="44.8125">
+        </div>
+
+        <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="number" id="longitude" name="longitude"
+                   step="0.0001" min="-180" max="180"
+                   placeholder="20.4612">
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="form-group">
+            <label for="days">Number of Days</label>
+            <input type="number" id="days" name="days"
+                   min="1" max="10"
+                   placeholder="All available">
+        </div>
+
+        <div class="form-group">
+            <label for="unit">Temperature Unit</label>
+            <select id="unit" name="unit">
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit">Get Forecast 🌤️</button>
+</form>
+
+<div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+    <h3 style="margin-bottom: 15px;">Examples:</h3>
+    <ul style="list-style: none; line-height: 2;">
+        <li>📍 <strong>Belgrade (default):</strong> Leave all fields empty</li>
+        <li>📍 <strong>Oslo:</strong> Lat: 59.9139, Lon: 10.7522</li>
+        <li>📍 <strong>New York:</strong> Lat: 40.7128, Lon: -74.0060</li>
+        <li>📍 <strong>Tokyo:</strong> Lat: 35.6762, Lon: 139.6503</li>
+    </ul>
+</div>
+{% endblock %}
